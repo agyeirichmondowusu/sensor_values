@@ -3,8 +3,8 @@ import uvicorn
 
 app = FastAPI()
 
-temperature = 0
-pH = 0
+temperature = 0.0
+pH = 0.0
 water_level = 0
 healthy = 0
 unhealthy = 0
@@ -62,6 +62,36 @@ def set_healthy(good):
         return 'success'
     except Exception:
         return 'error'
+
+
+@app.put("/update_healthy/{healthy_status}")
+def update_healthy(healthy_status: int):
+    set_healthy(healthy_status)
+    return 'healthy updated'
+
+
+@app.put("/update_unhealthy/{unhealthy_status}")
+def update_unhealthy(unhealthy_status: int):
+    set_unhealthy(unhealthy_status)
+    return 'unhealthy updated'
+
+
+@app.put("/update_temperature/{temperature_value}")
+def update_temperature(temperature_value: float):
+    set_temperature(temperature_value)
+    return 'temperature updated'
+
+
+@app.put("/update_ph/{ph_value}")
+def update_ph(ph_value: float):
+    set_ph(ph_value)
+    return 'ph updated'
+
+
+@app.put("/update_water_level/{level}")
+def update_water_level(level: int):
+    set_water_level(level)
+    return 'level updated'
 
 
 def set_unhealthy(bad):
