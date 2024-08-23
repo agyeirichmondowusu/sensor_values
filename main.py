@@ -3,11 +3,20 @@ import uvicorn
 
 app = FastAPI()
 
+class_name = ''
 temperature = 0.0
 pH = 0.0
 water_level = 0
 healthy = 0
 unhealthy = 0
+
+all_values = {"class_name":class_name,
+              "healthy": healthy,
+              "unhealthy": unhealthy,
+              "water_level": water_level,
+              "ph": pH,
+              "temperature": temperature
+             }
 
 
 @app.get("/updates")
@@ -20,6 +29,28 @@ def get_values():
         "healthy": healthy,
         "unhealthy": unhealthy
     }
+
+@app.post("/post_updates")
+def update_values(request: Request):
+    global healthy, unhealthy, water_level, pH, temperature, class_name
+    data = await request.json()
+    all_data = data.get('result')  # main request containing all the data
+    healthy = all_data.get('healthy')
+    unhealthy = all_data.get('unhealthy')
+    water_level = all_data.get('water_level')
+    pH = all_data.get('ph')
+    temperature = all_data.get('temperature')
+    class_name = all_data.get('class_name')
+
+    all_values.update({"class_name": class_name,
+                       "healthy": healthy,
+                       "unhealthy": unhealthy,
+                       "water_level": water_level,
+                       "ph": pH,
+                       "temperature": temperature})
+
+    return "update received"
+    
 
 
 @app.get("/healthy")
