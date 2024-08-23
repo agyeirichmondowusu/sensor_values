@@ -32,7 +32,7 @@ def get_values():
     }
 
 @app.post("/post_updates")
-def update_values(request: Request):
+async def update_values(request: Request):
     global healthy, unhealthy, water_level, pH, temperature, class_name
     data = await request.json()
     all_data = data.get('result')  # main request containing all the data
