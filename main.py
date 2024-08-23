@@ -21,8 +21,9 @@ all_values = {"class_name":class_name,
 
 @app.get("/get_updates")
 def get_values():
-    global temperature, pH, water_level, healthy, unhealthy
+    global temperature, pH, water_level, healthy, unhealthy, class_name
     return {
+        "class_name": class_name,
         "temp": temperature,
         "ph": pH,
         "water_lvl": water_level,
