@@ -30,7 +30,7 @@ async def update_values(request: Request):
                 "unhealthy": values.get('unhealthy'),
                 "ph": values.get('ph'),
                 "water_level": values.get('water_level'),
-                "temperature": temperature
+                "temperature": values.get('temperature')
                 })
 
     return "updated"
