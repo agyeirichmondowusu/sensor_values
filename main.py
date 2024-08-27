@@ -1,9 +1,20 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware
 import asyncio
 import uvicorn
 
 app = FastAPI()
+
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # You can specify allowed origins here
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class_name = ''
 temperature = 0.0
@@ -52,7 +63,7 @@ async def stream():
 # `uvicorn filename:app --reload`
 
 if __name__ == '__main__':
-    uvicorn.run(app, host="127.0.0.1", port=7000)
+    uvicorn.run(app, host="0.0.0.0", port=7000)
 
 
 
