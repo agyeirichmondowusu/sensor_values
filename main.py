@@ -16,12 +16,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-class_name = ''
-temperature = 0.0
-pH = 0.0
-water_level = 0
-healthy = 0
-unhealthy = 0
+class_name = ""
+temperature = "0.0"
+pH = "0.0"
+water_level = "0"
+healthy = "0"
+unhealthy = "0"
 
 data = {"class_name":class_name,
               "healthy": healthy,
