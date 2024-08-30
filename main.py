@@ -34,7 +34,7 @@ data = {"class_name":class_name,
 @app.post("/update_values")
 async def update_values(request: Request):
     result = await request.json()
-    values = result.get('result')
+    values = result.get("result")
 
     data.update({"class_name": values.get("class_name"),
                 "healthy": values.get("healthy"),
@@ -51,9 +51,14 @@ async def stream_updates():
     while True:
         # Simulate an update every 5 seconds                                                                                                
         await asyncio.sleep(3)
+
+        json_data = json.dumps(data)
+        
+        # Yield the JSON data
+        yield f"data: {json_data}\n\n"
         
         # You can modify the data here dynamically if needed
-        yield f"data: {data}\n\n"
+        #yield f"data: {data}\n\n"
 
 @app.get("/stream")
 async def stream():
