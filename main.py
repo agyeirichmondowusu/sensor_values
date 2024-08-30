@@ -36,12 +36,12 @@ async def update_values(request: Request):
     result = await request.json()
     values = result.get('result')
 
-    data.update({"class_name": values.get('class_name'),
-                "healthy": values.get('healthy'),
-                "unhealthy": values.get('unhealthy'),
-                "ph": values.get('ph'),
-                "water_level": values.get('water_level'),
-                "temperature": values.get('temperature')
+    data.update({"class_name": values.get("class_name"),
+                "healthy": values.get("healthy"),
+                "unhealthy": values.get("unhealthy"),
+                "ph": values.get("ph"),
+                "water_level": values.get("water_level"),
+                "temperature": values.get("temperature")
                 })
 
     return "updated"
