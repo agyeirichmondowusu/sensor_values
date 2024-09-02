@@ -16,7 +16,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-class_name = ""
+class_name = "-"
 temperature = "0.0"
 pH = "0.0"
 water_level = "0"
