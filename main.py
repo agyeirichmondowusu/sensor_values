@@ -51,18 +51,22 @@ async def stream_updates():
     while True:
         # Simulate an update every 5 seconds                                                                                                
         await asyncio.sleep(3)
-
         # json_data = json.dumps(data)
-        
         # Yield the JSON data
         # yield f"data: {json_data}\n\n"
-        
         # You can modify the data here dynamically if needed
         yield f"data: {data}\n\n"
 
 @app.get("/stream")
 async def stream():
     return StreamingResponse(stream_updates(), media_type="text/event-stream")
+
+
+
+
+
+
+
 
 # Run the FastAPI server with Uvicorn:
 # `uvicorn filename:app --reload`
