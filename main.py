@@ -16,30 +16,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-class_name = "-"
 temperature = "0.0"
 pH = "0.0"
 water_level = "0"
-healthy = "0"
-unhealthy = "0"
 
-data = {"class_name":class_name,
-              "healthy": healthy,
-              "unhealthy": unhealthy,
-              "water_level": water_level,
-              "ph": pH,
-              "temperature": temperature
-             }
+data = {"water_level": water_level,
+        "ph": pH,
+        "temperature": temperature
+        }
 
 @app.post("/update_values")
 async def update_values(request: Request):
     result = await request.json()
     values = result.get("result")
 
-    data.update({"class_name": values.get("class_name"),
-                "healthy": values.get("healthy"),
-                "unhealthy": values.get("unhealthy"),
-                "ph": values.get("ph"),
+    data.update("ph": values.get("ph"),
                 "water_level": values.get("water_level"),
                 "temperature": values.get("temperature")
                 })
