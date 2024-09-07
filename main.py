@@ -30,7 +30,7 @@ async def update_values(request: Request):
     result = await request.json()
     values = result.get("result")
 
-    data.update("ph": values.get("ph"),
+    data.update({"ph": values.get("ph"),
                 "water_level": values.get("water_level"),
                 "temperature": values.get("temperature")
                 })
